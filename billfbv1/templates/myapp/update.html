@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends 'myapp/parent.html'%}
+<html lang="en" dir="ltr">
+<body>
+	{%block for_child%}
+	<script>
+		function total(){
+			var x=document.getElementById('a').value;
+			var y=document.getElementById('b').value;
+			document.getElementById('c').value=x*y;
+		}
+	</script>
+	<h1 style="color:rgb(6, 6, 252)">Updation Form</h1>
+	<form method="post">
+		C No:<input type="text" name="C_no" value="{{stud.C_no}}"><br><br>
+		S No:<input type="text" name="S_no" value="{{stud.S_no}}"><br><br>
+		Items:<input type="text" list="Items" name="Items" value="{{stud.Items}}"><br><br>
+		<datalist id="Items">
+			<option>Egg Noodles</option>
+			<option>Veg Noodles</option>
+			<option>Fry Noodles</option>
+			<option>Egg Maggi</option>
+			<option>Veg Maggi</option>
+			<option>Fry Maggi</option>
+			<option>Schezwal Egg Maggi</option>
+			<option>Schezwal Veg Maggi</option>
+			<option>Schezwal Fry Maggi</option>
+		</datalist>
+		Quantity:<input type="text" name="Quantity" id="a" value="{{stud.Quantity}}"><br><br>
+		PricePerPc:<input type="text" name="PricePerPc" id="b" onkeyup="total()" value="{{stud.Price}}"><br><br>
+        Total_Price:<input type="text" name="Total_Price" id="c" value="{{stud.Total_Price}}"><br><br>
+		{%csrf_token%}
+		<input type="submit" class="btn btn-warning" value="submit">
+	</form>
+	{%endblock%}
+</body>
+</html>

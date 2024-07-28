@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function calculateGrandTotal() {
+			var subTotal = parseFloat(document.getElementById('sub-total').value); // get the sub total value from the input field
+			var cgstRate = 2.50; // CGST rate is 2.50%
+			var sgstRate = 2.50; // SGST rate is 2.50%
+			var cgst = subTotal * (cgstRate / 100); // calculate CGST amount
+			var sgst = subTotal * (sgstRate / 100); // calculate SGST amount
+			var grandTotal = subTotal + cgst + sgst; // calculate grand total
+			document.getElementById('cgst-amount').innerHTML = cgst.toFixed(2); // update CGST amount in the HTML content
+			document.getElementById('sgst-amount').innerHTML = sgst.toFixed(2); // update SGST amount in the HTML content
+			document.getElementById('grand-total').innerHTML = grandTotal.toFixed(2); // update grand total in the HTML content
+		}
+         // Define a function to update the date and time
+      function updateDateTime() {
+        // Get the current date and time
+        var now = new Date();
+
+        // Format the date
+        var day = now.getDate().toString().padStart(2, '0');
+        var month = (now.getMonth() + 1).toString().padStart(2, '0');
+        var year = now.getFullYear().toString();
+        var formattedDate = day + '-' + month + '-' + year;
+
+        // Format the time
+        var hours = now.getHours().toString().padStart(2, '0');
+        var minutes = now.getMinutes().toString().padStart(2, '0');
+        var seconds = now.getSeconds().toString().padStart(2, '0');
+        var formattedTime = hours + ':' + minutes + ':' + seconds;
+
+        // Update the content of the HTML elements
+        document.getElementById('current-date').innerHTML = formattedDate;
+        document.getElementById('current-time').innerHTML = formattedTime;
+      }
+
+      // Call the function once when the page loads
+      window.onload = updateDateTime;
+
+      // Call the function every second
+      setInterval(updateDateTime, 1000);
+	</script>
+</head>
+<body>
+    <center>
+    <div>
+        <h1>Yummpy'S</h1>
+        <p>Ayyapp Society, Madhapur <br> GST NO. :  36ABVFM0862G1ZW</p>
+    </div>
+    <hr>
+    <hr>
+    <p>date: <span id="current-date"></span></p>
+    <p>time: <span id="current-time"></span></p>
+        <p>Pick Up</p>
+        <p>Cashier: biller</p>
+        <td>Bill No. :{{i.Bill_No}}</td>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th>S No:</th>             
+            <th>Items:</th>     
+            <th>Quantity:</th>      
+            <th>PricePerPc:</th>
+            <th>Total Price</th>
+        </tr>
+        </thead>
+        {% for i in detailes %}
+        <tbody>
+            <tr>
+                <td>{{i.S_no}}</td>
+                <td>{{i.Items}}</td>
+                <td>{{i.Quantity}}</td>
+                <td>{{i.PricePerPc}}</td>
+                <td>{{i.Total_Price}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+<hr>
+<td>Total Quantity :{{i.Total_Quantity}}</td>
+<td>Sub Total :{{i.Total_Price}}</td> <br>
+	<label for="sub-total">Sub Total:</label>
+	<input type="number" id="sub-total" name="sub-total" onchange="calculateGrandTotal()"><br><br>
+	<label for="cgst-amount">CGST @2.50%:</label>
+	<span id="cgst-amount">0.00</span><br><br>
+	<label for="sgst-amount">SGST @2.50%:</label>
+	<span id="sgst-amount">0.00</span><br><br>
+	<label for="grand-total">Grand Total:</label>
+	<span id="grand-total">0.00</span>
+<hr>
+<hr>
+<p>Thank You | Visit Us Again <br> FSSAI NO. : 13622013001585</p>
+    </center>
+</body>
+</html>

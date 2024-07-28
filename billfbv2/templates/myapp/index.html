@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{%extends 'myapp/parent.html'%}
+<html lang="en" dir="ltr">
+<body>
+	{%block for_child%}
+	<h1 style="color:red"><b>Billing Details</b></h1>
+	<table border="2">
+		<tr style="color:green">
+			<th>S No:</th>
+			<th>Items</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Total Price</th>
+		</tr>
+		{%for i in stud%}
+		<tr>
+			<td><b>{{i.S_no}}</b></td>
+			<td><b>{{i.Items}}</b></td>
+			<td><b>{{i.Quantity}}</b></td>
+			<td><b>{{i.PricePerPc}}</b></td>
+			<td><b>{{i.Total_Price}}</b></td>
+			<td><a href="/update/{{i.id}}" type="button" class="btn btn-warning">Update</a></td>
+			<td><a href="/delete/{{i.id}}" type="button" class="btn btn-danger">Delete</a></td>
+		</tr>
+		{%endfor%}
+	</table>
+	<br><br>
+	<a href="insert/" type="button" class="btn btn-primary">Do you want to insert a new record?</a>
+	<a href="" type="button" class="btn btn-success">REFRESH</a>
+	{%endblock%}
+</body>
+</html>
+
+<!--<a href="{% url 'delete' billing1.S_no %}" class="btn btn-danger">Delete</a>
+	<a href="{% url 'insert' %}" class="btn btn-primary">Refresh</a>-->

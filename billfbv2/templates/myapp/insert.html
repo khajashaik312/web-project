@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'myapp/parent.html'%}
+<html lang="en" dir="ltr">
+<body>
+	{%block for_child%}
+	<h1>Insertion Form</h1>
+	<script>
+		function total(){
+			var x=document.getElementById('a').value;
+			var y=document.getElementById('b').value;
+			document.getElementById('c').value=x*y;
+		}
+		var dt = new Date();
+		document.getElementById('date-time').innerHTML=dt;
+	</script>
+	<form method="POST" action="/insert/">
+		{% csrf_token %}
+			S no:<input type="text" name="S">  <br><br>
+			Items:<input list="itemlist" name="I"> <br><br>
+			<datalist id="itemlist">
+				<option>Egg Noodles</option>
+				<option>Veg Noodles</option>
+				<option>Fry Noodles</option>
+				<option>Egg Maggi</option>
+				<option>Veg Maggi</option>
+				<option>Fry Maggi</option>
+				<option>Schezwal Egg Maggi</option>
+				<option>Schezwal Veg Maggi</option>
+				<option>Schezwal Fry Maggi</option>
+			</datalist>
+			Quantity:<input type="text" name="Q" id="a"><br><br>
+			PricePerPc:<input type="text" name="P" id="b" onkeyup="total()"><br><br>
+			Total Price:<input type="text" name="T" id="c"><br><br>
+			<input type="submit" type="button" class="btn btn-primary" value="Insert New Record"><a href="/"></a>
+			<!--<a href="/insert" type="button" class="btn btn-primary">Insert Again</a>
+			<input type="submit" type="button" class="btn btn-primary" value="Refresh">-->
+		</form>
+	{%endblock%}	
+</body>
+</html>
